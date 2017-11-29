@@ -54,18 +54,41 @@
     NSLog(@"%lu",(unsigned long)i);
     NSUInteger II = [array indexOfObject:@"tom"];
     
-    //10.获取正序排列集合,通过nextObject函数删除0下标元素
-    NSEnumerator *enumerator = [array objectEnumerator];
-    NSArray *allKeys = enumerator.allObjects;
-    NSLog(@"%@",allKeys);
     
-    id obj;
-    while (obj == [enumerator nextObject]) {
-        //遍历完后，数组已经清空
-        NSLog(@"%@",obj);
+    //10.判断指定的对象是否存在于数组中,如果存在返回对象所在的下标
+    NSUInteger index = [array indexOfObject:@"andy"];
+    if (index == NSNotFound) {
+        NSLog(@"对象不在数组中对象不在数组中");
     }
     
+    //11.判断指定的对象是否存在于数组中,数组查询的位置，是从range.location 的位置开始，到range.length 的长度结束。
+    NSUInteger index1 = [array indexOfObject:@"jonery" inRange:NSMakeRange(1, 3)];
+    if (index1 == NSNotFound) {
+        NSLog(@"对象不再数组中");
+    }
     
+    //12.判断两个数组是否相同
+    BOOL isEqual = [array isEqualToArray:array1];
+    
+    //13.返回最后一个元素
+    id lastObj = array.lastObject;
+    
+    //14.使用数组返回一个 NSEnumerator 对象，这个对象类似与一个指针，可以用来遍历 整个数组 指针从前向后遍历
+    NSEnumerator *enu = [array objectEnumerator];
+    id obj;
+    while (obj = enu.nextObject) {
+        NSLog(@"obj === %@ === ",obj);
+    }
+    
+    //15.返回一个NSEnumerator 对象，这个对象类似一个指针，可以用来遍历真个数据，所不同的是，这个指针，是从后向前遍历。
+    NSEnumerator *enu1 = [array reverseObjectEnumerator];
+    id obj1;
+    while (obj1 = enu1.nextObject) {
+        NSLog(@"obj1 === %@ === ",obj1);
+    }
+    
+    //16.进行数组的排序
+    //    NSArray *arr3 = [array sortedArrayUsingFunction: context:nil];
 }
 
 
